@@ -10,13 +10,18 @@ public class Output {
 
         Scanner stdin = new Scanner(System.in);
         int option;
-        String tableName;
+        String tableName = "test";
 
         boolean run = true;
+
+        ArrayList<String> tables = new ArrayList<>();
+        ArrayList<HashMap<String, String>> fields = new ArrayList<>();
 
         ///
 
         System.out.println("CSIS 3475 - Database project\n");
+
+        new GenerateCSV(tableName);
 
         while(run) {
 
@@ -24,6 +29,7 @@ public class Output {
 
                 System.out.println("Following options available: \n" +
                         "1) Create table\n" +
+                        "2) Create field\n" +
                         "5) Exit\n");
 
                 System.out.print("Enter corresponding number: ");
@@ -39,6 +45,10 @@ public class Output {
                         tableName = stdin.nextLine();
                         new CreateTable(tableName);
                         break;
+
+                    case 2:
+
+                        //System.out.print("Enter field names: ");
 
                     case 5:
                         System.exit(0);
