@@ -8,6 +8,8 @@ public class Output {
 
     public Output() {
 
+        CSV csv = new CSV();
+
         Scanner stdin = new Scanner(System.in);
         int option;
         String tableName = "test";
@@ -21,7 +23,6 @@ public class Output {
 
         System.out.println("CSIS 3475 - Database project\n");
 
-        new GenerateCSV(tableName);
 
         while(run) {
 
