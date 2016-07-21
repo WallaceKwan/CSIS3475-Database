@@ -82,7 +82,7 @@ public class CreateTable {
 
             }
 
-            csv.createNewFile(tableName, fieldNames);
+            csv.createNewFile(filePath, tableName, fieldNames);
 
         }
 

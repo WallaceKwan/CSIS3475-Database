@@ -13,7 +13,7 @@ public class CSV {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header (Enter own values)
-    private String FILE_HEADER = "id,firstName,lastName,gender,age";
+    private String FILE_HEADER = "";
 
 
 
@@ -60,32 +60,27 @@ public class CSV {
         return x;
     }
 
-    public void createNewFile(String tableName, HashMap<String, String> fieldNames) {
+    public void createNewFile(String filePath, String tableName, HashMap<String, String> fieldNames) {
 
         try {
 
-            FileWriter writer = new FileWriter("c:\\" + "" + tableName + "" + ".csv");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
 
             for (Map.Entry<String, String> entry : fieldNames.entrySet()) {
 
                 System.out.println(entry.getKey() + " / " + entry.getValue());
-                FILE_HEADER += entry.getKey() + " - " + entry.getValue();
+                FILE_HEADER += entry.getKey() + " - " + entry.getValue() + "" + COMMA_DELIMITER + " ";
 
             }
 
-            writer.append("id");
-            writer.append(COMMA_DELIMITER);
-            writer.append("name");
+            bw.append(FILE_HEADER);
 
+            bw.newLine();
+            bw.append("wallace");
 
-            // do whatever
-
-            System.out.println(writer);
-
-            //
-
-            writer.flush();
-            writer.close();
+            // DON'T FORGET
+            bw.flush();
+            bw.close();
 
         } catch (IOException e) {
             e.printStackTrace();
