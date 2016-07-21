@@ -36,15 +36,15 @@ public class Output {
                 System.out.print("Enter corresponding number: ");
 
                 option = stdin.nextInt();
+
                 System.out.println("");
                 stdin.nextLine();
+
                 switch (option) {
 
                     case 1:
 
-                        System.out.print("Enter table name: ");
-                        tableName = stdin.nextLine();
-                        new CreateTable(tableName);
+                        new CreateTable();
                         break;
 
                     case 2:

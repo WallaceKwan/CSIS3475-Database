@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +33,31 @@ public class CSV {
 
         return existingFile;
 
+    }
+
+    public String[] readFromFile(String filePath) {
+        String line = "";
+        String cvsSplitBy = ",";
+        String[] x = {};
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+            while ((line = br.readLine()) != null) {
+
+                x = line.split(cvsSplitBy);
+
+                for (int i = 0; i < x.length; i++) {
+                    System.out.println("test print: " + x[i]);
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return x;
     }
 
     public void createNewFile(String tableName, HashMap<String, String> fieldNames) {

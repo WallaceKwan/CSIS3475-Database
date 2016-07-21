@@ -23,11 +23,21 @@ public class CreateTable {
 
     HashMap<String, String> fieldNames = new HashMap<>();
 
-    public CreateTable(String tableName) {
+    String filePath = "";
+
+    public CreateTable() {
+
+        System.out.print("Enter table name: ");
+        tableName = stdin.nextLine();
+
+        filePath = "c:\\" + "" + tableName + "" + ".csv";
 
         if (csv.checkForFile(tableName)) {
 
             System.out.println("Test file already exists");
+            System.out.println(filePath);
+
+            csv.readFromFile(filePath);
 
         }
 
