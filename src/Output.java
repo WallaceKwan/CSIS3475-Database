@@ -2,27 +2,30 @@ import java.util.*;
 
 /**
  * Created by wallacekwan on 2016-06-26.
+ *
+ * GITHUB https://github.com/WallaceKwan/CSIS3475-Database
+ *
  */
 
 public class Output {
 
     public Output() {
 
-        CSV csv = new CSV();
+        Fields fields = new Fields();
 
         Scanner stdin = new Scanner(System.in);
-        int option;
-        String tableName = "test";
 
         boolean run = true;
 
-        ArrayList<String> tables = new ArrayList<>();
-        ArrayList<HashMap<String, String>> fields = new ArrayList<>();
+        int option;
 
-        ///
+        //Remove
+        //ArrayList<String> tables = new ArrayList<>();
+        //ArrayList<HashMap<String, String>> fi = new ArrayList<>();
+
+        ////
 
         System.out.println("CSIS 3475 - Database project\n");
-
 
         while(run) {
 
@@ -30,7 +33,8 @@ public class Output {
 
                 System.out.println("Following options available: \n" +
                         "1) Create table\n" +
-                        "2) Create field\n" +
+                        "2) Add records\n" +
+                        "3) \n" +
                         "5) Exit\n");
 
                 System.out.print("Enter corresponding number: ");
@@ -42,39 +46,56 @@ public class Output {
 
                 switch (option) {
 
+                    // Create table
                     case 1:
 
                         new CreateTable();
+
                         break;
 
+                    // Add fields
                     case 2:
 
-                        //System.out.print("Enter field names: ");
+                        fields.checkForTable();
 
+                        break;
+
+                    // Add records
+                    case 3:
+
+                        //fields.checkForTable();
+
+                        break;
+
+                    // Terminate program
                     case 5:
+
+                        System.out.println("Program terminated");
+                        run = false;
                         System.exit(0);
+
                         break;
 
                     default:
+
                         break;
 
                 }
 
             } catch (InputMismatchException e) {
 
-                System.out.println("Invalid input");
+                System.out.println("Invalid input\n");
                 stdin.nextLine();
 
             }
 
             // TEMP Remove when looping is needed
-            System.out.println("\n*Temp exit*\n");
-            System.exit(0);
+            //System.out.println("\n*Temp exit*\n");
+            //System.exit(0);
 
         }
 
     }
-
 
 
 }

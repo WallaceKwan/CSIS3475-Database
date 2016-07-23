@@ -21,13 +21,11 @@ public class CSV {
 
         boolean existingFile = false;
 
-        if (new File("c:\\" + "" + tableName + "" + ".csv").exists()) {
+        if (new File(tableName + "" + ".csv").exists()) {
 
             existingFile = true;
 
-            //read from file
-
-            System.out.println(FILE_HEADER);
+            System.out.println("\nFile exists already\n");
 
         }
 
@@ -35,12 +33,37 @@ public class CSV {
 
     }
 
-    public String[] readFromFile(String filePath) {
+    public String[] addRecords(String filePath) {
+
         String line = "";
         String cvsSplitBy = ",";
         String[] x = {};
 
         try {
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+            line = br.readLine();
+
+            x = line.split(cvsSplitBy);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return x;
+    }
+
+    // NOT DONE
+
+    public String[] readFromFile(String filePath) {
+
+        String line = "";
+        String cvsSplitBy = ",";
+        String[] x = {};
+
+        try {
+
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             while ((line = br.readLine()) != null) {
@@ -48,7 +71,9 @@ public class CSV {
                 x = line.split(cvsSplitBy);
 
                 for (int i = 0; i < x.length; i++) {
+
                     System.out.println("test print: " + x[i]);
+
                 }
 
             }
@@ -60,6 +85,38 @@ public class CSV {
         return x;
     }
 
+    // For adding fields
+
+    public String[] addFieldsToFile(String filePath) {
+
+        String line = "";
+        String cvsSplitBy = ",";
+        String[] x = {};
+
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+            while ((line = br.readLine()) != null) {
+
+                x = line.split(cvsSplitBy);
+
+                for (int i = 0; i < x.length; i++) {
+
+                    System.out.println(x[i]);
+
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return x;
+
+    }
+
     public void createNewFile(String filePath, String tableName, HashMap<String, String> fieldNames) {
 
         try {
@@ -68,7 +125,7 @@ public class CSV {
 
             for (Map.Entry<String, String> entry : fieldNames.entrySet()) {
 
-                System.out.println(entry.getKey() + " / " + entry.getValue());
+                //System.out.println(entry.getKey() + " / " + entry.getValue());
                 FILE_HEADER += entry.getKey() + " - " + entry.getValue() + "" + COMMA_DELIMITER + " ";
 
             }
@@ -76,7 +133,6 @@ public class CSV {
             bw.append(FILE_HEADER);
 
             bw.newLine();
-            bw.append("wallace");
 
             // DON'T FORGET
             bw.flush();
