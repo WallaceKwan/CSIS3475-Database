@@ -13,7 +13,7 @@ public class CSV {
     private static final String NEW_LINE_SEPARATOR = "\n";
 
     //CSV file header (Enter own values)
-    private String FILE_HEADER = "id,firstName,lastName,gender,age";
+    private String FILE_HEADER = "";
 
 
 
@@ -21,13 +21,11 @@ public class CSV {
 
         boolean existingFile = false;
 
-        if (new File("c:\\" + "" + tableName + "" + ".csv").exists()) {
+        if (new File(tableName + "" + ".csv").exists()) {
 
             existingFile = true;
 
-            //read from file
-
-            System.out.println(FILE_HEADER);
+            System.out.println("\nFile exists already\n");
 
         }
 
@@ -35,12 +33,37 @@ public class CSV {
 
     }
 
-    public String[] readFromFile(String filePath) {
+    public String[] addRecords(String filePath) {
+
         String line = "";
         String cvsSplitBy = ",";
         String[] x = {};
 
         try {
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+
+            line = br.readLine();
+
+            x = line.split(cvsSplitBy);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return x;
+    }
+
+    // NOT DONE
+
+    public String[] readFromFile(String filePath) {
+
+        String line = "";
+        String cvsSplitBy = ",";
+        String[] x = {};
+
+        try {
+
             BufferedReader br = new BufferedReader(new FileReader(filePath));
 
             while ((line = br.readLine()) != null) {
@@ -48,7 +71,9 @@ public class CSV {
                 x = line.split(cvsSplitBy);
 
                 for (int i = 0; i < x.length; i++) {
+
                     System.out.println("test print: " + x[i]);
+
                 }
 
             }
@@ -60,32 +85,58 @@ public class CSV {
         return x;
     }
 
-    public void createNewFile(String tableName, HashMap<String, String> fieldNames) {
+    // For adding fields
+
+    public String[] addFieldsToFile(String filePath) {
+
+        String line = "";
+        String cvsSplitBy = ",";
+        String[] x = {};
 
         try {
 
-            FileWriter writer = new FileWriter("c:\\" + "" + tableName + "" + ".csv");
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
 
-            for (Map.Entry<String, String> entry : fieldNames.entrySet()) {
+            while ((line = br.readLine()) != null) {
 
-                System.out.println(entry.getKey() + " / " + entry.getValue());
-                FILE_HEADER += entry.getKey() + " - " + entry.getValue();
+                x = line.split(cvsSplitBy);
+
+                for (int i = 0; i < x.length; i++) {
+
+                    System.out.println(x[i]);
+
+                }
 
             }
 
-            writer.append("id");
-            writer.append(COMMA_DELIMITER);
-            writer.append("name");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return x;
 
-            // do whatever
+    }
 
-            System.out.println(writer);
+    public void createNewFile(String filePath, String tableName, HashMap<String, String> fieldNames) {
 
-            //
+        try {
 
-            writer.flush();
-            writer.close();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filePath));
+
+            for (Map.Entry<String, String> entry : fieldNames.entrySet()) {
+
+                //System.out.println(entry.getKey() + " / " + entry.getValue());
+                FILE_HEADER += entry.getKey() + " - " + entry.getValue() + "" + COMMA_DELIMITER + " ";
+
+            }
+
+            bw.append(FILE_HEADER);
+
+            bw.newLine();
+
+            // DON'T FORGET
+            bw.flush();
+            bw.close();
 
         } catch (IOException e) {
             e.printStackTrace();

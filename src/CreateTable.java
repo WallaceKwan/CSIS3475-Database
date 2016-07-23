@@ -1,6 +1,5 @@
-import java.util.ArrayList;
+import java.io.File;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -11,47 +10,45 @@ public class CreateTable {
 
     CSV csv = new CSV();
 
+    File file = null;
+
     Scanner stdin = new Scanner(System.in);
 
-    String tableName, fieldName, dataType, name;
+    String tableName, filePath, fieldName, dataType, name;
     String[] fn;
 
     Boolean addField = true;
 
-    //ArrayList<ArrayList<String>> tables = new ArrayList<>();
-    ArrayList<ArrayList<String>> tables = new ArrayList<>();
-
     HashMap<String, String> fieldNames = new HashMap<>();
 
-    String filePath = "";
+
 
     public CreateTable() {
 
+        System.out.println("Table creation selected\n");
+
+        // Declares table name and file path for table
+
+
         System.out.print("Enter table name: ");
+
         tableName = stdin.nextLine();
 
-        filePath = "c:\\" + "" + tableName + "" + ".csv";
+        filePath = tableName + "" + ".csv";
 
-        if (csv.checkForFile(tableName)) {
+        file = new File(filePath);
 
-            System.out.println("Test file already exists");
-            System.out.println(filePath);
+        // Checks if table exists
 
-            csv.readFromFile(filePath);
+        if (!csv.checkForFile(tableName)) {
 
-        }
-
-        else {
-
-            this.tableName = tableName;
-            System.out.println("Creating table: " + tableName);
-
-            //tables.add(new ArrayList<String>(tableName));
-
-            System.out.println(tables);
+            System.out.println("Creating table with name: " + tableName + "\n");
 
             // Field naming
-            System.out.println("Field syntax is 'data type' followed by 'field name': ");
+
+            System.out.println("Field syntax is 'data type' <space> 'field name'");
+            System.out.println("Data types tested/supported: String, int");
+            System.out.println("Blank entry to quit\n");
 
             while (addField) {
 
@@ -59,20 +56,23 @@ public class CreateTable {
 
                 fieldName = stdin.nextLine();
 
+                // If user enters nothing then end adding fields
+
                 if (!fieldName.equals("")) {
 
+                    try {
+                        fn = fieldName.split(" ");
 
-                    fn = fieldName.split(" ");
 
-                    // '0' is the data type, '1' is the name for the field
-                    dataType = fn[0];
-                    name = fn[1];
+                        // '0' is the data type, '1' is the name for the field
+                        dataType = fn[0];
+                        name = fn[1];
 
-                /*for (int x = 0; x < fn.length; x++) {
-                    System.out.println(fn[x]);
-                }*/
+                        fieldNames.put(fn[1], fn[0]);
 
-                    fieldNames.put(fn[1], fn[0]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("\nMust have declare a data type and name\n");
+                    }
 
                 } else {
 
@@ -82,16 +82,39 @@ public class CreateTable {
 
             }
 
-            csv.createNewFile(tableName, fieldNames);
+            // Actually creating the file
+
+            csv.createNewFile(filePath, tableName, fieldNames);
 
         }
 
-        System.out.println(fieldNames.size());
-        for (Map.Entry<String, String> entry : fieldNames.entrySet())
-        {
-            System.out.println(entry.getKey() + "/" + entry.getValue());
+        // Shows fields
+
+        try {
+
+            System.out.println("\nThere are currently " + (csv.addRecords(filePath).length - 1)
+                    + " fields in " + file.getName() + "\n");
+
+        } catch (NullPointerException e) {
+
+            System.out.println("There are no fields in " + file.getName() + "\n");
+
         }
 
     }
 
+
 }
+
+//filePath = "c:\\" + "" + tableName + "" + ".csv";
+
+//System.out.println(filePath);
+//csv.readFromFile(filePath);
+
+//ArrayList<ArrayList<String>> tables = new ArrayList<>();
+
+/*for (Map.Entry<String, String> entry : fieldNames.entrySet())
+        {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }*/
+//System.out.println("");
