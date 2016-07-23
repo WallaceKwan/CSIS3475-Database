@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9206268c-9c41-4154-972b-13ff22f75128" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSIS3475_Database/CSV.class" afterPath="$PROJECT_DIR$/out/production/CSIS3475_Database/CSV.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSIS3475_Database/CreateTable.class" afterPath="$PROJECT_DIR$/out/production/CSIS3475_Database/CreateTable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CSIS3475_Database/Output.class" afterPath="$PROJECT_DIR$/out/production/CSIS3475_Database/Output.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CSV.java" afterPath="$PROJECT_DIR$/src/CSV.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CreateTable.java" afterPath="$PROJECT_DIR$/src/CreateTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Output.java" afterPath="$PROJECT_DIR$/src/Output.java" />
-    </list>
+    <list default="true" id="9206268c-9c41-4154-972b-13ff22f75128" name="Default" comment="" />
     <ignored path="CSIS3475_Database.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -645,12 +637,12 @@
       <workItem from="1467302515098" duration="4397000" />
       <workItem from="1467913994617" duration="5331000" />
       <workItem from="1469067169983" duration="7935000" />
-      <workItem from="1469236533435" duration="11776000" />
+      <workItem from="1469236533435" duration="11838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37687000" />
+    <option name="totallyTimeSpent" value="37749000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
