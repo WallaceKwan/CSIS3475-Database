@@ -12,6 +12,7 @@ public class Output {
     public Output() {
 
         Fields fields = new Fields();
+        Search search = new Search();
 
         Scanner stdin = new Scanner(System.in);
 
@@ -34,7 +35,7 @@ public class Output {
                 System.out.println("Following options available: \n" +
                         "1) Create table\n" +
                         "2) Add records\n" +
-                        "3) \n" +
+                        "3) Search\n" +
                         "5) Exit\n");
 
                 System.out.print("Enter corresponding number: ");
@@ -53,17 +54,48 @@ public class Output {
 
                         break;
 
-                    // Add fields
+                    // Add records
                     case 2:
 
                         fields.checkForTable();
 
                         break;
 
-                    // Add records
+                    // Search
                     case 3:
 
-                        //fields.checkForTable();
+                        System.out.println("Following additional options available: \n" +
+                                "1) Search\n" +
+                                "2) Sort\n" +
+                                "3) Filter (Where)\n" +
+                                "5) Filter (Like)\n");
+
+                        System.out.print("Enter corresponding number: ");
+
+                        option = stdin.nextInt();
+
+                        System.out.println("");
+                        stdin.nextLine();
+
+                        switch (option) {
+
+                            case 1:
+
+                                search.basicSearch();
+                                break;
+
+                            case 3:
+
+                                search.basicSearch();
+                                search.FilterWhere();
+                                break;
+
+                            default:
+
+                                System.out.println("Nothing done");
+                                break;
+
+                        }
 
                         break;
 

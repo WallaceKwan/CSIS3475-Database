@@ -11,6 +11,8 @@ public class CSV {
     //Delimiter used in CSV file
     private static final String COMMA_DELIMITER = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
+    private static final String START = "{";
+    private static final String END = "}";
 
     //CSV file header (Enter own values)
     private String FILE_HEADER = "";

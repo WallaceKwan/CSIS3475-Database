@@ -22,6 +22,8 @@ public class Fields {
     //Delimiter used in CSV file
     private static final String COMMA_DELIMITER = ",";
     private static final String NEW_LINE_SEPARATOR = "\n";
+    private static final String START = "{";
+    private static final String END = "}";
 
     //CSV file header (Enter own values)
     private String FILE_HEADER = "";
@@ -62,14 +64,14 @@ public class Fields {
     public void addToTable() {
 
         BufferedWriter bw;
+
         try {
+
             bw = new BufferedWriter(new FileWriter(filePath, true));
 
+            System.out.println("There are " + (existingFields.length - 1) + " fields currently");
 
-
-            System.out.println("There are " + (existingFields.length - 1);
-
-            bw.append(NEW_LINE_SEPARATOR);
+            //bw.append(START);
 
             for (int x = 0; x < existingFields.length - 1; x++) {
 
@@ -82,13 +84,12 @@ public class Fields {
 
             }
 
+            //bw.append(END);
             bw.append(NEW_LINE_SEPARATOR);
 
             // STOP FORGETTING
             bw.flush();
             bw.close();
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
