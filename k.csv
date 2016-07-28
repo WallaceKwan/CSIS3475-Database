@@ -1,5 +1,6 @@
-name - string, id - int, salary - int, 
-
-wallace,200,100,
-
-wall,10,200,
+"name	id	salary"
+"wallace	10	100"
+"joe	1313	1213123"
+"max	12	133"
+“and 	20 	100”
+“jess 	21 	100”
